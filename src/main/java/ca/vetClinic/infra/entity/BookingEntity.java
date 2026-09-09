@@ -1,5 +1,6 @@
 package ca.vetClinic.infra.entity;
 
+import ca.vetClinic.domain.enumerator.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,9 +30,10 @@ public class BookingEntity {
 	private UUID veterinarianId;
 	@Column(name = "time_slot_id", nullable = false)
 	private UUID timeSlotId;
-	@Column(name = "status", nullable = false)
-	private String status;
-	@Column(name = "notes", nullable = false)
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status", nullable = false, columnDefinition = "ENUM('PENDING','APPROVED','REJECTED','CANCELLED')")
+	private Status status;
+	@Column(name = "notes")
 	private String notes;
 	@CreationTimestamp
 	@Column(name = "booking_created_at", nullable = false, updatable = false)
@@ -40,7 +42,7 @@ public class BookingEntity {
 	@Column(name = "booking_updated_at", nullable = false)
 	private Instant bookingUpdatedAt;
 
-	public BookingEntity(UUID userId, UUID vetId, UUID serviceId, UUID petId, UUID timeSlotId, String status,
+	public BookingEntity(UUID userId, UUID vetId, UUID serviceId, UUID petId, UUID timeSlotId, Status status,
 			String notes) {
 		this.userId = userId;
 		this.serviceId = serviceId;

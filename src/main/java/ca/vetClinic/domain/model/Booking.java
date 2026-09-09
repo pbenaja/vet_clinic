@@ -1,8 +1,6 @@
 package ca.vetClinic.domain.model;
 
-import jakarta.persistence.Column;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import ca.vetClinic.domain.enumerator.Status;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -14,12 +12,12 @@ public class Booking {
 	private UUID petId;
 	private UUID veterinarianId;
 	private UUID timeSlotId;
-	private String status;
+	private Status status;
 	private String notes;
 	private Instant bookingCreatedAt;
 	private Instant bookingUpdatedAt;
 
-	public Booking(UUID userId, UUID vetId, UUID serviceId, UUID petId, UUID timeSlotId, String status, String notes) {
+	public Booking(UUID userId, UUID vetId, UUID serviceId, UUID petId, UUID timeSlotId, Status status, String notes) {
 		this.userId = userId;
 		this.serviceId = serviceId;
 		this.petId = petId;
@@ -77,11 +75,11 @@ public class Booking {
 		this.timeSlotId = timeSlotId;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
