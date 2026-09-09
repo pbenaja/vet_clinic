@@ -2,8 +2,8 @@ package ca.vetClinic.domain.service;
 
 import ca.vetClinic.domain.model.WorkingHours;
 
-import java.time.DayOfWeek;
+import java.util.List;
 
 public interface WorkingHoursService {
-	WorkingHours findByDayOfWeek(DayOfWeek dayOfWeek);
+	List<WorkingHours> findAll();
 }
