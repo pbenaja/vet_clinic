@@ -4,8 +4,8 @@ import ca.vetClinic.domain.enumerator.Role;
 import ca.vetClinic.domain.exception.NotFoundException;
 import ca.vetClinic.domain.model.Employee;
 import ca.vetClinic.domain.repository.EmployeRepository;
-import ca.vetClinic.infra.entity.EmployeEntity;
-import ca.vetClinic.infra.mapper.EmployeMapper;
+import ca.vetClinic.infra.entity.EmployeeEntity;
+import ca.vetClinic.infra.mapper.EmployeeMapper;
 import ca.vetClinic.infra.repository.jpa.EmployeJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -15,9 +15,9 @@ import java.util.UUID;
 
 @Repository
 @RequiredArgsConstructor
-public class EmployeRepositoryImpl implements EmployeRepository {
+public class EmployeeRepositoryImpl implements EmployeRepository {
 	private final EmployeJpaRepository jpaRepository;
-	private final EmployeMapper mapper;
+	private final EmployeeMapper mapper;
 
 	@Override
 	public List<Employee> findAll() {
@@ -38,7 +38,7 @@ public class EmployeRepositoryImpl implements EmployeRepository {
 	@Override
 	public void save(Employee employee) {
 		if (employee.getId() != null) {
-			EmployeEntity savedEntity = jpaRepository.findById(employee.getId())
+			EmployeeEntity savedEntity = jpaRepository.findById(employee.getId())
 					.orElseThrow(() -> new NotFoundException("id"));
 			savedEntity.setFirstName(employee.getFirstName());
 			savedEntity.setLastName(employee.getLastName());
@@ -46,7 +46,7 @@ public class EmployeRepositoryImpl implements EmployeRepository {
 			jpaRepository.save(savedEntity);
 			return;
 		}
-		EmployeEntity entity = mapper.toEntity(employee);
+		EmployeeEntity entity = mapper.toEntity(employee);
 		jpaRepository.save(entity);
 		employee.setId(entity.getId());
 	}

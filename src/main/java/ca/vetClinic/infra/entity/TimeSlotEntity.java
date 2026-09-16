@@ -19,9 +19,9 @@ public class TimeSlotEntity {
 	@Column(name = "id", columnDefinition = "BINARY(16)", updatable = false, nullable = false)
 	private UUID id;
 
-	@Column(name = "vetenerian_id", nullable = false)
-	private UUID vetenerianId;
-
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "vetenerian_id", nullable = false, columnDefinition = "BINARY(16)")
+	private EmployeeEntity vetenerian;
 	@Column(name = "start_time", nullable = false)
 	private LocalTime startTime;
 
@@ -37,9 +37,7 @@ public class TimeSlotEntity {
 	public TimeSlotEntity() {
 	}
 
-	public TimeSlotEntity(UUID vetenerianId, LocalTime startTime, LocalTime endTime, LocalDate date,
-			boolean available) {
-		this.vetenerianId = vetenerianId;
+	public TimeSlotEntity(LocalTime startTime, LocalTime endTime, LocalDate date, boolean available) {
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.date = date;

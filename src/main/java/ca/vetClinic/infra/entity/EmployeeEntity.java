@@ -9,7 +9,7 @@ import java.util.UUID;
 @Getter
 @Entity
 @Table(name = "employees")
-public class EmployeEntity {
+public class EmployeeEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
@@ -29,10 +29,10 @@ public class EmployeEntity {
 	@JoinColumn(name = "account_id", nullable = false, columnDefinition = "BINARY(16)")
 	private AccountEntity account;
 
-	public EmployeEntity() {
+	public EmployeeEntity() {
 	}
 
-	public EmployeEntity(String firstName, String lastName, String phoneNumber) {
+	public EmployeeEntity(String firstName, String lastName, String phoneNumber) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
