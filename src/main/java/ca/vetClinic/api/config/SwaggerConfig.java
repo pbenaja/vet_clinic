@@ -15,7 +15,7 @@ public class SwaggerConfig {
 	@Bean
 	public OpenAPI vetClinicOpenAPI() {
 		return new OpenAPI()
-				.info(new Info().title("Vet Clinic API").description("Vet Clinic API").version("v1.7")
+				.info(new Info().title("Vet Clinic API").description("Vet Clinic API").version("v1.8")
 						.license(new License().name("Apache 2.0").url("http://springdoc.org")))
 				.addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
 				.components(new Components().addSecuritySchemes("bearerAuth",

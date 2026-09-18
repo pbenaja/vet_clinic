@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cares")
 @RequiredArgsConstructor
-public class CareOffering {
+@RequestMapping("/infos")
+public class Information {
 	private final CareOfferingService careOfferingService;
 
-	@GetMapping()
+	@GetMapping("/cares")
 	ResponseEntity<List<CareResponse>> findAllCareOfferings(@RequestParam(required = false) CareService service) {
 		List<ca.vetClinic.domain.model.CareOffering> careOfferings = careOfferingService.findCareOfferings(service);
 		List<CareResponse> careResponses = careOfferings.stream()
@@ -28,5 +28,4 @@ public class CareOffering {
 				.toList();
 		return ResponseEntity.status(HttpStatus.OK).body(careResponses);
 	}
-
 }
