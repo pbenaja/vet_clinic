@@ -1,8 +1,11 @@
 package ca.vetClinic.api.controller;
 
 import ca.vetClinic.api.dto.response.CareResponse;
+import ca.vetClinic.api.dto.response.WorkingHResponse;
 import ca.vetClinic.domain.enumerator.CareService;
+import ca.vetClinic.domain.model.WorkingHours;
 import ca.vetClinic.domain.service.CareOfferingService;
+import ca.vetClinic.domain.service.WorkingHoursService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +21,24 @@ import java.util.List;
 @RequestMapping("/infos")
 public class Information {
 	private final CareOfferingService careOfferingService;
+	private final WorkingHoursService workingHoursService;
 
 	@GetMapping("/cares")
 	ResponseEntity<List<CareResponse>> findAllCareOfferings(@RequestParam(required = false) CareService service) {
 		List<ca.vetClinic.domain.model.CareOffering> careOfferings = careOfferingService.findCareOfferings(service);
-		List<CareResponse> careResponses = careOfferings.stream()
+		List<CareResponse> responses = careOfferings.stream()
 				.map(careOffering -> new CareResponse(careOffering.getName(), careOffering.getDescription(),
 						careOffering.getPrice(), careOffering.getDuration(), careOffering.getCareService()))
 				.toList();
-		return ResponseEntity.status(HttpStatus.OK).body(careResponses);
+		return ResponseEntity.status(HttpStatus.OK).body(responses);
+	}
+	@GetMapping("/workingHours")
+	ResponseEntity<List<WorkingHResponse>> findAllWorkingHours() {
+		List<WorkingHours> workingHours = workingHoursService.findAll();
+		List<WorkingHResponse> responses = workingHours.stream()
+				.map(workingHour -> new WorkingHResponse(workingHour.getDayOfWeek(), workingHour.getOpeningTime(),
+						workingHour.getClosingTime()))
+				.toList();
+		return ResponseEntity.status(HttpStatus.OK).body(responses);
 	}
 }
