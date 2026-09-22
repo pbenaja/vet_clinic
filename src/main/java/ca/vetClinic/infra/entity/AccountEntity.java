@@ -32,11 +32,4 @@ public class AccountEntity {
 	public AccountEntity() {
 	}
 
-	public AccountEntity(UUID id, String email, String password, Role role) {
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.role = role;
-		this.mustChangePassword = false;
-	}
 }

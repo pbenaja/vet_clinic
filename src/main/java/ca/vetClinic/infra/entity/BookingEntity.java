@@ -52,7 +52,6 @@ public class BookingEntity {
 		this.notes = notes;
 		this.veterinarianId = vetId;
 	}
-
 	public BookingEntity() {
 	}
 

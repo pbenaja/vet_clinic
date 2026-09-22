@@ -39,11 +39,4 @@ public class PetEntity {
 	public PetEntity() {
 	}
 
-	public PetEntity(String name, String species, String breed, String gender, LocalDate birthDate) {
-		this.name = name;
-		this.species = species;
-		this.breed = breed;
-		this.gender = gender;
-		this.birthDate = birthDate;
-	}
 }

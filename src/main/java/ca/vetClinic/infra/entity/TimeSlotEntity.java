@@ -37,10 +37,4 @@ public class TimeSlotEntity {
 	public TimeSlotEntity() {
 	}
 
-	public TimeSlotEntity(LocalTime startTime, LocalTime endTime, LocalDate date, boolean available) {
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.date = date;
-		this.available = available;
-	}
 }

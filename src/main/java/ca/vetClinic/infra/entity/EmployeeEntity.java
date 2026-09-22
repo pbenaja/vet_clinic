@@ -32,9 +32,4 @@ public class EmployeeEntity {
 	public EmployeeEntity() {
 	}
 
-	public EmployeeEntity(String firstName, String lastName, String phoneNumber) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phoneNumber = phoneNumber;
-	}
 }

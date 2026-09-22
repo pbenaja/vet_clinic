@@ -39,9 +39,4 @@ public class UserEntity {
 	public UserEntity() {
 	}
 
-	public UserEntity(String firstName, String lastName, String phoneNumber) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phoneNumber = phoneNumber;
-	}
 }

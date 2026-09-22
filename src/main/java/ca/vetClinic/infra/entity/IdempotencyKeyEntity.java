@@ -31,9 +31,4 @@ public class IdempotencyKeyEntity {
 	public IdempotencyKeyEntity() {
 	}
 
-	public IdempotencyKeyEntity(UUID id, Instant expiresAt) {
-		this.id = id;
-		this.processed = false;
-		this.expiresAt = expiresAt;
-	}
 }

@@ -37,11 +37,4 @@ public class CareOfferingEntity {
 	public CareOfferingEntity() {
 	}
 
-	public CareOfferingEntity(String name, String description, double price, int duration, CareService careService) {
-		this.name = name;
-		this.description = description;
-		this.price = price;
-		this.duration = duration;
-		this.careService = careService;
-	}
 }

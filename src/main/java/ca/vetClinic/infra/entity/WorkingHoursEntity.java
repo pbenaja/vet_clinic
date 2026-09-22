@@ -26,9 +26,4 @@ public class WorkingHoursEntity {
 	public WorkingHoursEntity() {
 
 	}
-	public WorkingHoursEntity(String dayOfWeek, LocalTime openingTime, LocalTime closingTime) {
-		this.dayOfWeek = dayOfWeek;
-		this.openingTime = openingTime;
-		this.closingTime = closingTime;
-	}
 }
