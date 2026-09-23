@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -49,6 +48,18 @@ class InformationE2ETest extends BaseE2ETest {
 		void findCareOfferingsByService_unknownServiceReturnsBadRequest() throws Exception {
 			mockMvc.perform(get("/infos/cares").param("service", "INVALID")).andExpect(status().isBadRequest());
 		}
+	}
+	@Nested
+	class WorkingHours {
+		@Test
+		void findAllWorkingHours_returnsOk() throws Exception {
+			mockMvc.perform(get("/infos/workingHours")).andExpect(status().isOk());
+		}
+		@Test
+		void findAllWorkingHours_returnsAllWorkingHours() throws Exception {
+			mockMvc.perform(get("/infos/workingHours")).andExpect(jsonPath("$.length()").value(5));
+		}
+
 	}
 
 }
