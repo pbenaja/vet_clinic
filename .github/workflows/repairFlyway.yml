@@ -1,0 +1,24 @@
+name: DB Maintenance - Flyway Repair
+
+on:
+  workflow_dispatch:
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Java 25
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+          cache: 'maven'
+
+      - name: Flyway repair
+        run: |
+          mvn flyway:repair \
+            -Dflyway.url="jdbc:mysql://${{ secrets.TIDB_HOST }}:4000/${{ secrets.TIDB_DB }}?sslMode=VERIFY_IDENTITY&enabledTLSProtocols=TLSv1.2,TLSv1.3" \
+            -Dflyway.user="${{ secrets.TIDB_USERNAME }}" \
+            -Dflyway.password="${{ secrets.TIDB_PASSWORD }}"
