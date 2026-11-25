@@ -128,13 +128,22 @@ class EmployeRepositoryTest extends AbstractContainerBase {
 		Employee employee = createEmployee(account.getId());
 		repository.save(employee);
 
-		Employee found = repository.findByRole(Role.USER);
+		List<Employee> found = repository.findByRole(Role.USER);
 
-		assertEquals(employee.getFirstName(), found.getFirstName());
+		assertEquals(employee.getFirstName(), found.getFirst().getFirstName());
 	}
+    @Test
+    void givenTwoEmployeesSaved_thenFindByRolePresent() {
+        Account account = createAndSaveAccount(EMAIL, Role.USER);
+        Account account2 = createAndSaveAccount(OTHER_EMAIL, Role.USER);
+        Employee employee = createEmployee(account.getId());
+        Employee employee2 = createEmployee(account2.getId());
+        repository.save(employee);
+        repository.save(employee2);
 
-	@Test
-	void givenRoleNotFound_thenThrowNotFoundExceptionOnFindByRole() {
-		assertThrows(NotFoundException.class, () -> repository.findByRole(Role.USER));
-	}
+        List<Employee> found = repository.findByRole(Role.USER);
+
+        assertEquals(2, found.size());
+    }
+
 }

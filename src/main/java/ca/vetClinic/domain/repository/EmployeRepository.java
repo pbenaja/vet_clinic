@@ -11,7 +11,7 @@ public interface EmployeRepository {
 
 	Employee findById(UUID id);
 
-	Employee findByRole(Role role);
+	List<Employee> findByRole(Role role);
 
 	void save(Employee employee);
 
