@@ -18,7 +18,7 @@ public class PetEntity {
 	@Column(name = "id", columnDefinition = "BINARY(16)", updatable = false, nullable = false)
 	private UUID id;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "owner_id", nullable = false, columnDefinition = "BINARY(16)")
 	private UserEntity user;
 	@Column(name = "name", nullable = false, length = 100)
